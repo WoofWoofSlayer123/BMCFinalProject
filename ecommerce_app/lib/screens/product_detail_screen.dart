@@ -27,7 +27,7 @@ class ProductDetailScreen extends StatelessWidget {
           children: [
             Image.network(
               imageUrl,
-              height: 300,
+              height: 200,
               fit: BoxFit.cover,
               loadingBuilder: (context, child, loadingProgress) {
                 if (loadingProgress == null) return child;

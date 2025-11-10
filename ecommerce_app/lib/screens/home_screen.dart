@@ -7,8 +7,7 @@ import 'package:ecommerce_app/screens/product_detail_screen.dart';
 import 'package:ecommerce_app/providers/cart_provider.dart';
 import 'package:ecommerce_app/screens/cart_screen.dart';
 import 'package:provider/provider.dart';
-
-
+import 'package:ecommerce_app/screens/order_history_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -60,7 +59,6 @@ class _HomeScreenState extends State<HomeScreen> {
             builder: (context, cart, child) {
               return Badge(
                 label: Text(cart.itemCount.toString()),
-                // 5. Only show the badge if the count is > 0
                 isLabelVisible: cart.itemCount > 0,
                 child: IconButton(
                   icon: const Icon(Icons.shopping_cart),
@@ -75,6 +73,17 @@ class _HomeScreenState extends State<HomeScreen> {
               );
             },
           ),
+          IconButton(
+            icon: const Icon(Icons.receipt_long), // A "receipt" icon
+            tooltip: 'My Orders',
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const OrderHistoryScreen(),
+                ),
+              );
+            },
+          ),
           if (_userRole == 'admin')
             IconButton(
               icon: const Icon(Icons.admin_panel_settings),
@@ -82,7 +91,7 @@ class _HomeScreenState extends State<HomeScreen> {
               onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                      builder: (context) => const AdminPanelScreen(),
+                    builder: (context) => const AdminPanelScreen(),
                   ),
                 );
               },
